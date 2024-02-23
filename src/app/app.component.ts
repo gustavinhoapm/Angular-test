@@ -9,5 +9,22 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Desafio-Angular';
+  isLoading: boolean = false;
+  
+
+  
+  constructor() {
+    this.getDate();
+  }
+
+  getDate(){
+    this.isLoading = true;
+    fetch('https://api.github.com/users')
+    .then(data => data.json( ) ) 
+    .then(data => {console.log(data)})
+    .catch( _ => { console.log(_)})
+    .finally( () => {
+      this.isLoading = false;
+    })
+  }
 }
