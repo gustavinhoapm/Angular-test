@@ -6,7 +6,10 @@
 <main class="main">
   <div class="content">
     <h1 class="Title">Lista dos usuários Github</h1>
-    
+    <ul>
+      <li *ngFor="let login of loginsString.split('\n')">{{ login }}</li>
+   
+    </ul>
 
   </div>
 </main>

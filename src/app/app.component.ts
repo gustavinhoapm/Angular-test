@@ -1,30 +1,31 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Importe o CommonModule aqui
 import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet], // Adicione o CommonModule aqui
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  isLoading: boolean = false;
-  
+  loginsString: string = '';
 
-  
   constructor() {
     this.getDate();
   }
 
-  getDate(){
-    this.isLoading = true;
+  getDate() {
     fetch('https://api.github.com/users')
-    .then(data => data.json( ) ) 
-    .then(data => {console.log(data)})
-    .catch( _ => { console.log(_)})
-    .finally( () => {
-      this.isLoading = false;
-    })
+      .then(data => data.json())
+      .then((data: { login: string }[]) => {
+        this.loginsString = data.map(obj => obj.login).join('\n');
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados:', error);
+      });
   }
 }
