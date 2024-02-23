@@ -11,21 +11,33 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  loginsString: string = '';
+  usersData: any[] = [];
 
   constructor() {
-    this.getDate();
+    this.fetchUserData();
   }
 
-  getDate() {
+  fetchUserData() {
     fetch('https://api.github.com/users')
       .then(data => data.json())
-      .then((data: { login: string }[]) => {
-        this.loginsString = data.map(obj => obj.login).join('\n');
-        console.log(data);
+      
+      .then((data: any[]) => {
+        this.usersData = data;
+        console.log(data)
       })
       .catch(error => {
         console.error('Erro ao obter dados:', error);
       });
+  }
+
+  openUserDetails(user: any) {
+    const userDetails = Object.keys(user).map(key => `${key}: ${user[key]}`).join('\n');
+    const userDetailsWindow = window.open('', '_blank');
+    if (userDetailsWindow) {
+      userDetailsWindow.document.write('<pre>' + userDetails + '</pre>');
+      userDetailsWindow.document.close();
+    } else {
+      alert('Por favor, habilite pop-ups para ver os detalhes do usuário.');
+    }
   }
 }

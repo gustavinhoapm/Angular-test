@@ -1,19 +1,57 @@
 
 <style>
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.title {
+    display: flex;
+    text-align: center;
+}
+
+.user-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-list li {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    gap: 20px;
+}
+
+.user-list li:hover {
+    background-color: #e0e0e0;
+}
+
 </style>
 
 <main class="main">
   <div class="content">
     <h1 class="Title">Lista dos usuários Github</h1>
-    <ul>
-      <li *ngFor="let login of loginsString.split('\n')">{{ login }}</li>
-   
+    <ul class="user-list">
+      <li *ngFor="let user of usersData" (click)="openUserDetails(user)">
+        {{ user.login }}
+      </li>
     </ul>
-
   </div>
 </main>
-
 
 
 <router-outlet />
