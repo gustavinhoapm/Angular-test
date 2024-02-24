@@ -21,16 +21,11 @@ export class AppComponent {
   }
 
   fetchUserData() {
-    const token = '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';
-    const headers = {
-      Authorization: `token ${token}`
-    };
-
-    fetch('https://api.github.com/users', { headers })
+    fetch('https://api.github.com/users')
       .then(data => data.json())
       .then((data: any[]) => {
         this.usersData = data;
-        console.log(data);
+        console.log(data)
       })
       .catch(error => {
         console.error('Erro ao obter dados:', error);
