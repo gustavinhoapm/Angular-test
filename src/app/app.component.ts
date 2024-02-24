@@ -33,6 +33,11 @@ export class AppComponent {
   }
 
   openUserDetails(user: any) {
-    this.userDetails.openUserDetails(user);
+    this.userDetails.openUserDetails(user, () => {
+      const index = this.usersData.indexOf(user);
+      if (index !== -1) {
+        this.usersData.splice(index, 1);
+      }
+    });
   }
 }

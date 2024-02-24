@@ -7,7 +7,7 @@ export class UserDetailsService {
 
   constructor() { }
 
-  openUserDetails(user: any) {
+  openUserDetails(user: any, deleteUserCallback: () => void) {
     const userDetails = Object.keys(user)
       .map(key => {
         let value = user[key];
@@ -17,6 +17,7 @@ export class UserDetailsService {
         return `<strong>${key}:</strong> ${value}<br><br>`;
       })
       .join('');
+
     const userDetailsWindow = window.open('', '_blank');
     if (userDetailsWindow) {
       userDetailsWindow.document.write(`
@@ -36,7 +37,7 @@ export class UserDetailsService {
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                max-width: 400px;
+                max-width: 50%;
                 margin: 0 auto;
               }
 
@@ -49,13 +50,48 @@ export class UserDetailsService {
                 color: #666;
                 margin-bottom: 10px;
               }
+
+              .buttons-container {
+                margin-top: 20px;
+              }
+
+              .button {
+                margin-right: 10px;
+                padding: 10px 15px;
+                background-color: #ccc;
+                color: #000;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, color 0.3s ease;
+                font-size: 18px;
+              }
+
+              .button:hover {
+                transform: scale(1.1);
+                transition: all 0.4s;
+                background-color: #000;
+                color: #fff;
+              }
             </style>
           </head>
           <body>
             <div class="user-details">
               <h2>Detalhes do Usuário</h2>
               <p>${userDetails}</p>
+              <div class="buttons-container">
+                <button class="button" onclick="window.close()">Voltar</button>
+                <button class="button" onclick="deleteUser()">Excluir usuário</button>
+              </div>
             </div>
+            <script>
+              function deleteUser() {
+                if (confirm('Tem certeza que deseja excluir este usuário?')) {
+                  ${deleteUserCallback()}
+                  window.close();
+                }
+              }
+            </script>
           </body>
         </html>
       `);

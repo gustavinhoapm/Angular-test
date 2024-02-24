@@ -27,7 +27,7 @@
     text-align: center;
     padding: 10px;
     margin-bottom: 5px;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; 
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
@@ -44,19 +44,3 @@ body {
     padding: 20px;
 }
 
-.user-details {
-    background-color: #ff0000;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.user-details h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.user-details p {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
