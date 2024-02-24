@@ -7,7 +7,7 @@ export class UserDetailsService {
 
   constructor() { }
 
-  openUserDetails(user: any, deleteUserCallback: () => void) {
+  openUserDetails(user: any) {
     const userDetails = Object.keys(user)
       .map(key => {
         let value = user[key];
@@ -81,17 +81,10 @@ export class UserDetailsService {
               <p>${userDetails}</p>
               <div class="buttons-container">
                 <button class="button" onclick="window.close()">Voltar</button>
-                <button class="button" onclick="deleteUser()">Excluir usuário</button>
+
               </div>
             </div>
-            <script>
-              function deleteUser() {
-                if (confirm('Tem certeza que deseja excluir este usuário?')) {
-                  ${deleteUserCallback()}
-                  window.close();
-                }
-              }
-            </script>
+
           </body>
         </html>
       `);

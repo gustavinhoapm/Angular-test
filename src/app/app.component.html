@@ -1,14 +1,14 @@
 
 <main class="main">
   <div class="content">
-    <h1 class="Title">Lista dos usuários Github</h1>
+    <h1 class="title">Lista dos usuários Github</h1>
     <ul class="user-list">
       <li *ngFor="let user of usersData" (click)="openUserDetails(user)">
-        {{ user.login }}
+        <span>{{ user.login }}</span>
+        <button title="Excluir usuários" class="delete-button" (click)="confirmAndDeleteUser($event, user)">X</button>
       </li>
     </ul>
   </div>
 </main>
-
 
 <router-outlet />

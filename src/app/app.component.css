@@ -31,6 +31,7 @@
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
+    justify-content: space-between;
 }
 
 .user-list li:hover {
@@ -38,6 +39,21 @@
     transition: all 0.4s;
     background-color: #e0e0e0;
 }
+
+.delete-button {
+    background-color: #c40000d2;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right; 
+  }
+  
+  .delete-button:hover {
+    transition: all 0.4s;
+    background-color: #700909;
+  }
 
 body {
     font-family: Arial, sans-serif;

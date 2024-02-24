@@ -21,11 +21,16 @@ export class AppComponent {
   }
 
   fetchUserData() {
-    fetch('https://api.github.com/users')
-      .then(data => data.json())      
+    const token = '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';
+    const headers = {
+      Authorization: `token ${token}`
+    };
+
+    fetch('https://api.github.com/users', { headers })
+      .then(data => data.json())
       .then((data: any[]) => {
         this.usersData = data;
-
+        console.log(data);
       })
       .catch(error => {
         console.error('Erro ao obter dados:', error);
@@ -33,11 +38,21 @@ export class AppComponent {
   }
 
   openUserDetails(user: any) {
-    this.userDetails.openUserDetails(user, () => {
+    this.userDetails.openUserDetails(user);
+  }
+
+  confirmAndDeleteUser(event: Event, user: any) {
+    event.stopPropagation(); // Evita a propagação do evento de clique para o elemento pai
+    if (this.confirmDelete(user.login)) {
       const index = this.usersData.indexOf(user);
       if (index !== -1) {
         this.usersData.splice(index, 1);
       }
-    });
+    }
   }
+
+
+confirmDelete(username: string): boolean {
+  return confirm(`Você deseja excluir o usuário ${username}?`);
+}
 }
