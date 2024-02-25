@@ -1,15 +1,17 @@
-
 <main class="main">
   <div class="content">
     <h1 class="title">Lista dos usuários Github</h1>
-    <ul class="user-list">
-      <li *ngFor="let user of usersData" (click)="openUserDetails(user)">
-        <div class="user-container">
-        <span>{{ user.login }}</span>
-        <button title="Excluir usuários" class="delete-button" (click)="confirmAndDeleteUser($event, user)">X</button>
-      </div>
-      </li>
-    </ul>
+    <div class="user-list-container">
+      <ul class="user-list">
+        <li *ngFor="let user of usersData" (click)="openUserDetails(user)">
+          <div class="user-container">
+            <span>{{ user.login }}</span>
+            <button title="Excluir usuários" class="delete-button"
+              (click)="confirmAndDeleteUser($event, user)">X</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </main>
 
