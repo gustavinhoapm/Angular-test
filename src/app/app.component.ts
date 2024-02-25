@@ -9,7 +9,7 @@ import { UserDetailsService } from './user-details.service';
   standalone: true,
   imports: [CommonModule, RouterOutlet], 
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
   
 })
 
@@ -34,10 +34,12 @@ export class AppComponent {
 
   openUserDetails(user: any) {
     this.userDetails.openUserDetails(user);
+    
+
   }
 
   confirmAndDeleteUser(event: Event, user: any) {
-    event.stopPropagation(); // Evita a propagação do evento de clique para o elemento pai
+    event.stopPropagation(); 
     if (this.confirmDelete(user.login)) {
       const index = this.usersData.indexOf(user);
       if (index !== -1) {
